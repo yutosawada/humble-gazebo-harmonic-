@@ -24,11 +24,32 @@
             <size>0.5 0.3 0.2</size>
           </box>
         </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+        </material>
       </visual>
+      <sensor name="lidar" type="gpu_lidar">
+        <pose>0 0 0.15 0 0 0</pose>
+        <update_rate>10</update_rate>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.1</min>
+            <max>10</max>
+          </range>
+        </lidar>
+      </sensor>
     </link>
 
     <link name="left_wheel">
-      <pose>-0.15 0.15 0.05 0 0 0</pose>
+      <pose>-0.15 0.15 0.05 -1.5708 0 0</pose>
       <collision name="collision">
         <geometry>
           <cylinder>
@@ -44,11 +65,15 @@
             <length>0.02</length>
           </cylinder>
         </geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+        </material>
       </visual>
     </link>
 
     <link name="right_wheel">
-      <pose>-0.15 -0.15 0.05 0 0 0</pose>
+      <pose>-0.15 -0.15 0.05 -1.5708 0 0</pose>
       <collision name="collision">
         <geometry>
           <cylinder>
@@ -64,13 +89,17 @@
             <length>0.02</length>
           </cylinder>
         </geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+        </material>
       </visual>
     </link>
 
     <joint name="left_wheel_joint" type="revolute">
       <parent>chassis</parent>
       <child>left_wheel</child>
-      <pose>-0.15 0.15 0.05 0 0 0</pose>
+      <pose>-0.15 0.15 0.05 -1.5708 0 0</pose>
       <axis>
         <xyz>0 1 0</xyz>
         <limit>
@@ -86,7 +115,7 @@
     <joint name="right_wheel_joint" type="revolute">
       <parent>chassis</parent>
       <child>right_wheel</child>
-      <pose>-0.15 -0.15 0.05 0 0 0</pose>
+      <pose>-0.15 -0.15 0.05 -1.5708 0 0</pose>
       <axis>
         <xyz>0 1 0</xyz>
         <limit>
