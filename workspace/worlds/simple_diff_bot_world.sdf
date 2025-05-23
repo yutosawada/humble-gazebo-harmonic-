@@ -2,6 +2,11 @@
 <sdf version="1.6">
   <world name="default">
     <include>
+      <uri>model://ground_plane</uri>
+      <name>ground_plane</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+    <include>
       <uri>model://simple_diff_bot</uri>
       <name>simple_diff_bot</name>
       <pose>0 0 0 0 0 0</pose>
