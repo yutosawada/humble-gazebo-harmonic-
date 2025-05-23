@@ -11,15 +11,3 @@ You can launch the model with Ignition Gazebo:
 ```bash
 ign gazebo -v 4 workspace/models/simple_diff_bot/model.sdf
 ```
-
-## World
-
-A minimal world file which spawns the robot using an `<include>` tag is
-available under `workspace/worlds`.
-Add the `workspace` directory to `IGN_GAZEBO_RESOURCE_PATH` so the simulator can
-locate the model and then launch the world:
-
-```bash
-export IGN_GAZEBO_RESOURCE_PATH=$(pwd)/workspace
-ign gazebo -v 4 workspace/worlds/simple_diff_bot_world.sdf
-```
