@@ -16,6 +16,7 @@ ign gazebo -v 4 /workspace/models/simple_diff_bot/model.sdf  # in the container
 ## Worlds
 
 A minimal world file which spawns the robot using an `<include>` tag is available under `workspace/worlds`.
+The world also brings in a basic ground plane from `workspace/models/ground_plane` so the robot spawns on a flat surface.
 Add the `workspace/models` directory to `IGN_GAZEBO_RESOURCE_PATH` so the simulator can locate the model and then launch the world:
 
 ```bash
