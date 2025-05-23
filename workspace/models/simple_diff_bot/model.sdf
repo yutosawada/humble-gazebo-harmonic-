@@ -99,18 +99,18 @@
     </link>
 
     <link name="caster">
-      <pose>0.2 0 0.02 0 0 0</pose>
+      <pose>0.2 0 0 0 0 0</pose>
       <collision name="collision">
         <geometry>
           <sphere>
-            <radius>0.02</radius>
+            <radius>0.05</radius>
           </sphere>
         </geometry>
       </collision>
       <visual name="visual">
         <geometry>
           <sphere>
-            <radius>0.02</radius>
+            <radius>0.05</radius>
           </sphere>
         </geometry>
       </visual>
@@ -151,7 +151,7 @@
     <joint name="caster_joint" type="ball">
       <parent>chassis</parent>
       <child>caster</child>
-      <pose>0.2 0 0.02 0 0 0</pose>
+      <pose>0.2 0 0 0 0 0</pose>
     </joint>
 
     <plugin name="diff_drive" filename="libignition-gazebo-diff-drive-system.so">
