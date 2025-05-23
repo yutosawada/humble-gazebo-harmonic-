@@ -46,8 +46,13 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m -u 1000 rosuser
+
+
 # ワークスペースディレクトリの作成
 RUN mkdir -p /workspace
+
+# Gazebo のモデル検索パスを設定
+ENV IGN_GAZEBO_RESOURCE_PATH=/workspace/models
 
 # 作業ディレクトリを設定
 WORKDIR /workspace
