@@ -1,1 +1,13 @@
-# humble-gazebo-harmonic-
+# humble-gazebo-harmonic
+
+This repository provides a Docker environment with ROS 2 Humble and Ignition Gazebo Harmonic.
+The `workspace` directory in this repository is mounted into the container as `/workspace`.
+
+## Models
+
+A simple differential drive robot model is available at `workspace/models/simple_diff_bot`.
+You can launch the model with Ignition Gazebo:
+
+```bash
+ign gazebo -v 4 workspace/models/simple_diff_bot/model.sdf
+```
