@@ -52,6 +52,9 @@ RUN mkdir -p /workspace
 # 作業ディレクトリを設定
 WORKDIR /workspace
 
+# Gazebo のモデル検索パスを設定
+ENV IGN_GAZEBO_RESOURCE_PATH=/workspace/models
+
 # ROS環境のセットアップをbashrcに追加
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 
