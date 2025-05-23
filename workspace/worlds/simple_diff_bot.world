@@ -5,9 +5,50 @@
         <uri>model://ground_plane</uri>
       </include>
       <include>
-        <uri>../models/simple_diff_bot/model.sdf</uri>
-        <name>simple_diff_bot</name>
-        <pose>0 0 0 0 0 0</pose>
-      </include>
+      <uri>../models/simple_diff_bot/model.sdf</uri>
+      <name>simple_diff_bot</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+    <!-- Surrounding walls -->
+    <include>
+      <uri>../models/wall/model.sdf</uri>
+      <name>wall_north</name>
+      <pose>0 2 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>../models/wall/model.sdf</uri>
+      <name>wall_northeast</name>
+      <pose>1.4 1.4 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>../models/wall/model.sdf</uri>
+      <name>wall_east</name>
+      <pose>2 0 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>../models/wall/model.sdf</uri>
+      <name>wall_southeast</name>
+      <pose>1.4 -1.4 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>../models/wall/model.sdf</uri>
+      <name>wall_south</name>
+      <pose>0 -2 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>../models/wall/model.sdf</uri>
+      <name>wall_southwest</name>
+      <pose>-1.4 -1.4 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>../models/wall/model.sdf</uri>
+      <name>wall_west</name>
+      <pose>-2 0 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>../models/wall/model.sdf</uri>
+      <name>wall_northwest</name>
+      <pose>-1.4 1.4 0 0 0 0</pose>
+    </include>
   </world>
 </sdf>
