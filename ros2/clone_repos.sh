@@ -12,6 +12,7 @@ fi
 
 mkdir -p "$SRC_DIR"
 
+
 awk_cmd='
 function print_repo() {
   if (name != "") {
@@ -28,6 +29,7 @@ function print_repo() {
 /^\s*branch:/ { branch=$0; sub(/.*branch:[ ]*/, "", branch); next; }
 /^\s*commit:/ { commit=$0; sub(/.*commit:[ ]*/, "", commit); next; }
 END { print_repo() }'
+
 
 while IFS='|' read -r NAME REPO BRANCH COMMIT; do
   [ -z "$NAME" ] && continue
@@ -52,6 +54,7 @@ while IFS='|' read -r NAME REPO BRANCH COMMIT; do
     git fetch --all
     git reset --hard "$COMMIT"
   fi
+
   cd "$BASE_DIR"
   echo ""
 done < <(grep -v '^repositories:' "$YAML_FILE" | awk "$awk_cmd")
