@@ -1,0 +1,10 @@
+repositories:
+  - name: example_repo
+    repo: https://github.com/example/example_repo.git
+    # branch and commit are optional
+    branch: main
+    commit: <commit-sha>
+  - name: another_repo
+    repo: https://github.com/example/another_repo.git
+    branch: main
+    commit: <commit-sha>
