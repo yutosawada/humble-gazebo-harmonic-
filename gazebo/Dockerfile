@@ -34,10 +34,6 @@ RUN curl -sSL http://packages.osrfoundation.org/gazebo.gpg -o /usr/share/keyring
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ros-humble-ros-base \
-        ros-humble-navigation2 \
-        ros-humble-nav2-bringup \
-        ros-humble-slam-toolbox \
-        ros-humble-rviz2 \
         ros-humble-ros-gz \
         ros-humble-ros-gz-sim \
         ros-humble-ros-gz-bridge \
@@ -46,7 +42,6 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m -u 1000 rosuser
-
 
 # ワークスペースディレクトリの作成
 RUN mkdir -p /workspace

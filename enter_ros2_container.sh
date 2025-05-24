@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # コンテナが実行中かチェック
-CONTAINER_NAME="ros2-humble-gazebo-harmonic"
+CONTAINER_NAME="ros2"
 CONTAINER_RUNNING=$(docker ps -q -f name=${CONTAINER_NAME})
 
 if [ -z "${CONTAINER_RUNNING}" ]; then

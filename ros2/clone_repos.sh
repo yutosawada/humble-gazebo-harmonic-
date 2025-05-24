@@ -12,49 +12,61 @@ fi
 
 mkdir -p "$SRC_DIR"
 
+echo "=== リポジトリクローンを開始します ==="
+echo "YAMLファイル: $YAML_FILE"
+echo "出力先ディレクトリ: $SRC_DIR"
 
+# YAMLパーサー
 awk_cmd='
-function print_repo() {
-  if (name != "") {
-    print name "|" repo "|" branch "|" commit
-  }
-}
-/^\s*- name:/ {
-  print_repo();
-  name=$0; sub(/.*- name:[ ]*/, "", name);
-  repo=""; branch=""; commit="";
-  next;
-}
-/^\s*repo:/ { repo=$0; sub(/.*repo:[ ]*/, "", repo); next; }
-/^\s*branch:/ { branch=$0; sub(/.*branch:[ ]*/, "", branch); next; }
-/^\s*commit:/ { commit=$0; sub(/.*commit:[ ]*/, "", commit); next; }
-END { print_repo() }'
+BEGIN { in_repo = 0; }
+/^repositories:/ { in_repo = 1; next; }
+/^  - name:/ && in_repo {
+  name = $0; sub(/.*- name:[ ]*/, "", name);
+  getline; repo = $0; sub(/.*repo:[ ]*/, "", repo);
+  getline; branch = $0; sub(/.*branch:[ ]*/, "", branch);
+  getline; commit = $0; sub(/.*commit:[ ]*/, "", commit);
+  # 空白を取り除く
+  gsub(/^[ \t]+|[ \t]+$/, "", name);
+  gsub(/^[ \t]+|[ \t]+$/, "", repo);
+  gsub(/^[ \t]+|[ \t]+$/, "", branch);
+  gsub(/^[ \t]+|[ \t]+$/, "", commit);
+  print name "|" repo "|" branch "|" commit;
+}'
 
 
 while IFS='|' read -r NAME REPO BRANCH COMMIT; do
   [ -z "$NAME" ] && continue
   TARGET="$SRC_DIR/$NAME"
-  echo "==== Processing $NAME ===="
+  echo "==== リポジトリ処理: $NAME ===="
   if [ ! -d "$TARGET" ]; then
-    echo "Cloning $REPO into $TARGET"
-    git clone "$REPO" "$TARGET"
+    echo "クローン中: $REPO -> $TARGET"
+    if ! git clone "$REPO" "$TARGET"; then
+      echo "警告: $REPO のクローンに失敗しました。スキップします。"
+      continue
+    fi
   else
-    echo "Directory $TARGET already exists, skipping clone"
+    echo "既存のディレクトリ: $TARGET (クローンをスキップ)"
   fi
   cd "$TARGET"
   if [ -n "$BRANCH" ]; then
-    echo "Checking out branch $BRANCH"
-    git fetch origin "$BRANCH"
-    git checkout "$BRANCH"
+    echo "ブランチ $BRANCH をチェックアウト"
+    if ! git fetch origin "$BRANCH" 2>/dev/null; then
+      echo "警告: ブランチ $BRANCH が見つかりません。デフォルトブランチを使用します。"
+    else
+      git checkout "$BRANCH"
+    fi
   else
-    echo "Using default branch"
+    echo "デフォルトブランチを使用"
   fi
   if [ -n "$COMMIT" ]; then
-    echo "Resetting to commit $COMMIT"
-    git fetch --all
-    git reset --hard "$COMMIT"
+    echo "コミット $COMMIT にリセット"
+    if ! git fetch --all && git reset --hard "$COMMIT"; then
+      echo "警告: コミット $COMMIT へのリセットに失敗しました。"
+    fi
   fi
 
   cd "$BASE_DIR"
   echo ""
-done < <(grep -v '^repositories:' "$YAML_FILE" | awk "$awk_cmd")
+done < <(awk "$awk_cmd" "$YAML_FILE")
+
+echo "=== リポジトリクローン完了 ==="

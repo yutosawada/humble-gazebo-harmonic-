@@ -1,11 +1,5 @@
 repositories:
-  - name: example_repo
-    repo: https://github.com/example/example_repo.git
-
-    # branch and commit are optional
-    branch: main
-    commit: <commit-sha>
-  - name: another_repo
-    repo: https://github.com/example/another_repo.git
-    branch: main
-    commit: <commit-sha>
+  - name: teleop_twist_keyboard
+    repo: https://github.com/ros2/teleop_twist_keyboard.git
+    branch: 
+    commit: 
