@@ -1,8 +1,29 @@
 version: '3'
 
 services:
-  ros2-humble-gazebo:
-    container_name: ros2-humble-gazebo-harmonic
+  gazebo:
+    container_name: gazebo-harmonic
+    build:
+      context: ./gazebo
+      dockerfile: Dockerfile
+    user: "1000:1000"
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    volumes:
+      - ./gazebo/workspace:/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /run/user/1000/gdm/Xauthority:/root/.Xauthority
+      - /run/user/1000/:/run/user/1000/
+    network_mode: host
+    privileged: true
+    restart: unless-stopped
+    command: tail -f /dev/null
+
+  ros2:
+    container_name: ros2-humble
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,12 +34,13 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
     volumes:
-      - ./workspace:/workspace
+      - ./gazebo/workspace:/workspace
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /run/user/1000/gdm/Xauthority:/root/.Xauthority
       - /run/user/1000/:/run/user/1000/
     network_mode: host
     privileged: true
-    # runtime: nvidia  # GPUを使用する場合はこの行のコメントを解除してください
     restart: unless-stopped
     command: tail -f /dev/null
+    depends_on:
+      - gazebo
