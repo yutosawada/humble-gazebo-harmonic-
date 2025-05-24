@@ -53,7 +53,7 @@
 
     <!--Left wheel-->
     <link name='left_wheel'>
-        <pose relative_to="chassis">-0.5 0.6 0 -1.5707 0 0</pose> <!--angles are in radian-->
+        <pose relative_to="chassis">-0.15 0.175 -0.05 -1.5707 0 0</pose> <!--angles are in radian-->
         <inertial>
             <mass>1</mass>
             <inertia>
@@ -68,8 +68,8 @@
         <visual name='visual'>
             <geometry>
                 <cylinder>
-                    <radius>0.4</radius>
-                    <length>0.2</length>
+                    <radius>0.1</radius>
+                    <length>0.05</length>
                 </cylinder>
             </geometry>
             <material>
@@ -81,8 +81,8 @@
         <collision name='collision'>
             <geometry>
                 <cylinder>
-                    <radius>0.4</radius>
-                    <length>0.2</length>
+                    <radius>0.1</radius>
+                    <length>0.05</length>
                 </cylinder>
             </geometry>
         </collision>
@@ -90,7 +90,7 @@
 
     <!--The same as left wheel but with different position-->
     <link name='right_wheel'>
-        <pose relative_to="chassis">-0.5 -0.6 0 -1.5707 0 0</pose> <!--angles are in radian-->
+        <pose relative_to="chassis">-0.15 -0.175 -0.05 -1.5707 0 0</pose> <!--angles are in radian-->
         <inertial>
             <mass>1</mass>
             <inertia>
@@ -105,8 +105,8 @@
         <visual name='visual'>
             <geometry>
                 <cylinder>
-                    <radius>0.4</radius>
-                    <length>0.2</length>
+                    <radius>0.1</radius>
+                    <length>0.05</length>
                 </cylinder>
             </geometry>
             <material>
@@ -118,15 +118,15 @@
         <collision name='collision'>
             <geometry>
                 <cylinder>
-                    <radius>0.4</radius>
-                    <length>0.2</length>
+                    <radius>0.1</radius>
+                    <length>0.05</length>
                 </cylinder>
             </geometry>
         </collision>
     </link>
     <!--arbitrary frame-->
     <frame name="caster_frame" attached_to='chassis'>
-        <pose>0.8 0 -0.2 0 0 0</pose>
+        <pose>0.15 0 -0.1 0 0 0</pose>
     </frame>
 
     <!--caster wheel-->
@@ -146,7 +146,7 @@
         <visual name='visual'>
             <geometry>
                 <sphere>
-                    <radius>0.2</radius>
+                    <radius>0.05</radius>
                 </sphere>
             </geometry>
             <material>
@@ -158,7 +158,7 @@
         <collision name='collision'>
             <geometry>
                 <sphere>
-                    <radius>0.2</radius>
+                    <radius>0.05</radius>
                 </sphere>
             </geometry>
         </collision>

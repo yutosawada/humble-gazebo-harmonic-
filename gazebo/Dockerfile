@@ -44,13 +44,13 @@ RUN apt-get update && \
 RUN useradd -m -u 1000 rosuser
 
 # ワークスペースディレクトリの作成
-RUN mkdir -p /root/workspace
+RUN mkdir -p /workspace
 
 # Gazebo のモデル検索パスを設定
 ENV IGN_GAZEBO_RESOURCE_PATH=/workspace/models
 
 # 作業ディレクトリを設定
-WORKDIR /root/workspace
+WORKDIR /workspace
 
 # ROS環境のセットアップをbashrcに追加
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc

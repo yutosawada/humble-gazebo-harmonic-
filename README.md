@@ -26,9 +26,4 @@ ign gazebo -v 4 workspace/worlds/simple_diff_bot_world.sdf   # on the host
 ign gazebo -v 4 /workspace/worlds/simple_diff_bot_world.sdf  # in the container
 ```
 
-Another world file `simple_diff_bot.world` includes the model via a relative path, so no additional environment variables are required. Launching the world instead of the model starts Ignition Gazebo with this preconfigured world:
 
-```bash
-ign gazebo -v 4 workspace/worlds/simple_diff_bot.world   # on the host
-ign gazebo -v 4 /workspace/worlds/simple_diff_bot.world  # in the container
-```
