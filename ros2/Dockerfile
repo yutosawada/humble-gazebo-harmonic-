@@ -15,10 +15,9 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # Create workspace directory
-RUN mkdir -p /ros2_ws
-WORKDIR /ros2_ws
+RUN mkdir -p /root/ros2_ws
+WORKDIR /root/ros2_ws
 
-RUN useradd -m -u 1000 rosuser
 # Copy ROS 2 workspace files
 # COPY . /ros2_ws
 

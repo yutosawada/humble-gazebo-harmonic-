@@ -4,14 +4,14 @@ services:
     build:
       context: ./gazebo
       dockerfile: Dockerfile
-    user: "1000:1000"
+    #user: "1000:1000"
     environment:
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
     volumes:
-      - ./gazebo/workspace:/workspace
+      - ./gazebo/workspace:/root/workspace
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /run/user/1000/gdm/Xauthority:/root/.Xauthority
       - /run/user/1000/:/run/user/1000/
@@ -26,14 +26,13 @@ services:
     build:
       context: ./ros2
       dockerfile: Dockerfile
-    user: "1000:1000"
     environment:
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
     volumes:
-      - ./ros2/ros2_ws:/ros2_ws
+      - ./ros2/ros2_ws:/root/ros2_ws
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /run/user/1000/gdm/Xauthority:/root/.Xauthority
       - /run/user/1000/:/run/user/1000/
